@@ -85,10 +85,12 @@ dlldata.c
 *.tmp
 *.tmp_proj
 *.log
+*.tlog
 *.vspscc
 *.vssscc
 .builds
 *.pidb
+*idb
 *.svclog
 *.scc
 # Chutzpah Test files
