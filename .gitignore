@@ -38,4 +38,4 @@ $RECYCLE.BIN/
 *.lnk
 
 DBMS2.opensdf
-test.bin
+DBMS2/test.bin
