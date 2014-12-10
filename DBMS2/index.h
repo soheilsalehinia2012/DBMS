@@ -1,13 +1,12 @@
 #include "records.h"
 
-class Student :public FixSize
+class Index :public FixSize
 {
 	FixField recordManager;
 public:
-	Student(string FileName = "test.bin") :FixSize(60, FileName)
+	Index(string FileName = "index.bin") :FixSize(60,FileName)
 	{
 	}
-
 	int pkey;
 
 
@@ -36,44 +35,28 @@ public:
 	int pack()
 	{
 		int recordSize = 0;
-		link = InitAddress;
-		recordSize += recordManager.attach(buffer, (char*)&ID, sizeof(ID), sizeof(ID));
-		recordSize += recordManager.attach(buffer + recordSize, name, strlen(name), sizeof(name)-1);
-		recordSize += recordManager.attach(buffer + recordSize, lastName, strlen(lastName), sizeof(name)-1);
-		recordSize += recordManager.attach(buffer + recordSize, (char*)&grade, sizeof(grade), sizeof(grade));
-		recordSize += recordManager.attach(buffer + recordSize, (char*)&link, sizeof(link), sizeof(link));
+		recordSize += recordManager.attach(buffer, (char*)&pkey, sizeof(pkey), sizeof(pkey));
 		return recordSize;
 	}
 
 	int deletePack(){
-		int recordSize = 0;
-		link = headerLink;
-		ID = -1;
-		recordSize += recordManager.attach(buffer, (char*)&ID, sizeof(ID), sizeof(ID));
-		recordSize += recordManager.attach(buffer + recordSize, name, strlen(name), sizeof(name)-1);
-		recordSize += recordManager.attach(buffer + recordSize, lastName, strlen(lastName), sizeof(name)-1);
-		recordSize += recordManager.attach(buffer + recordSize, (char*)&grade, sizeof(grade), sizeof(grade));
-		recordSize += recordManager.attach(buffer + recordSize, (char*)&link, sizeof(link), sizeof(link));
-		return recordSize;
+		return 0;
 	}
 
 
 	bool headerUnPack(){
-		int index = 0;
-		index += recordManager.detach(buffer, (char*)&link, sizeof(link));
-		headerLink = link;
 		return true;
 	}
 
 	int headerPack(){
-		int recordSize = 0;
-		link = headerLink;
-		recordSize += recordManager.attach(buffer, (char*)&link, sizeof(link), sizeof(link));
-		return recordSize;
+		return 0;
+	}
+	virtual int getLink(){
+		return 0;
 	}
 
 	Record* getInstance(string FileName)
 	{
-		return new Student(FileName);
+		return new Index(FileName);
 	}
 };

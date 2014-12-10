@@ -79,6 +79,7 @@
     <ClCompile Include="readwrite.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="index.h" />
     <ClInclude Include="Records.h" />
     <ClInclude Include="student.h" />
   </ItemGroup>
