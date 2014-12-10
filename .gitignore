@@ -36,3 +36,6 @@ $RECYCLE.BIN/
 *.msp
 # Windows shortcuts
 *.lnk
+
+DBMS2.opensdf
+test.bin
